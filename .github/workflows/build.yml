@@ -4,6 +4,9 @@ on:
   pull_request: {}
   push: { branches: [master] }
 
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
 jobs:
   build:
     name: Build my project ✨
@@ -26,8 +29,8 @@ jobs:
       - name: Build project
         uses: webbertakken/unity-builder@v0.10
         with:
-          unityVersion: 2019.2.11f1
-          targetPlatform: WebGL 
+          unityVersion: 2019.4.1f1
+          targetPlatform: Windows 
 
       # Output 
       - uses: actions/upload-artifact@v1
