@@ -9,7 +9,7 @@ class JenkinsBuild
 {
     static string[] SCENES = FindEnabledEditorScenes();
 
-    static string APP_NAME = "YourProject";
+    static string APP_NAME = "Test_CI";
     static string TARGET_DIR = "target";
 
     [MenuItem("Custom/CI/Build Mac OS X")]
@@ -17,6 +17,13 @@ class JenkinsBuild
     {
         string targetDir = APP_NAME + ".app";
         GenericBuild(SCENES, TARGET_DIR + "/" + targetDir, BuildTargetGroup.Standalone, BuildTarget.StandaloneOSX, BuildOptions.None);
+    }
+
+    [MenuItem("Custom/CI/Build Windows")]
+    static void PerformWindowsBuild()
+    {
+        string targetDir = APP_NAME;
+        GenericBuild(SCENES, TARGET_DIR + "/" + targetDir, BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows, BuildOptions.None);
     }
 
     private static string[] FindEnabledEditorScenes()
