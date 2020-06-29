@@ -30,6 +30,13 @@ class JenkinsBuild
     static void PerformAndroidBuild()
     {
         string targetPath = APP_NAME + ".apk";
+        GenericBuild(SCENES, TARGET_DIR + "/" + targetPath, BuildTargetGroup.Standalone, BuildTarget.Android, BuildOptions.None);
+    }
+
+    [MenuItem("Custom/CI/Build Android Gradle")]
+    static void PerformAndroidGradleBuild()
+    {
+        string targetPath = APP_NAME;
         GenericBuild(SCENES, TARGET_DIR + "/" + targetPath, BuildTargetGroup.Standalone, BuildTarget.Android, BuildOptions.AcceptExternalModificationsToPlayer);
     }
 
