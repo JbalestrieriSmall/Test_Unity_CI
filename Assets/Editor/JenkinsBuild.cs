@@ -26,6 +26,36 @@ class JenkinsBuild
         GenericBuild(SCENES, TARGET_DIR + "/" + targetPath, BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows, BuildOptions.None);
     }
 
+    [MenuItem("Custom/CI/Build Android")]
+    static void PerformAndroidBuild()
+    {
+        string targetPath = APP_NAME + ".apk";
+        GenericBuild(SCENES, TARGET_DIR + "/" + targetPath, BuildTargetGroup.Standalone, BuildTarget.Android, BuildOptions.None);
+    }
+
+    static void PerformBuild(BuildTarget target)
+    {
+        string targetPath = "";
+
+        switch (target)
+        {
+            case BuildTarget.StandaloneOSX:
+                targetPath = APP_NAME + ".app";
+                break;
+            case BuildTarget.StandaloneWindows:
+                targetPath = APP_NAME + ".exe";
+                break;
+            case BuildTarget.Android:
+                targetPath = APP_NAME + ".apk";
+                break;
+            default:
+                throw new Exception("Build target not supported: " + target);
+                break;
+        }
+
+        GenericBuild(SCENES, TARGET_DIR + "/" + targetPath, BuildTargetGroup.Standalone, target, BuildOptions.None);
+    }
+
     private static string[] FindEnabledEditorScenes()
     {
         List<string> EditorScenes = new List<string>();
