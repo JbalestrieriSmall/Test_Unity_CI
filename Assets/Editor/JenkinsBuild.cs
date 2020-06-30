@@ -9,8 +9,8 @@ class JenkinsBuild
 {
     static string[] SCENES = FindEnabledEditorScenes();
 
-    static string APP_NAME = "Test_CI";
-    static string TARGET_DIR = "Builds";
+    static string APP_NAME = Application.productName;
+    static string TARGET_DIR = "Archive";
 
     [MenuItem("Custom/CI/Build Mac OS X")]
     static void PerformMacOSXBuild()
@@ -31,13 +31,6 @@ class JenkinsBuild
     {
         string targetPath = APP_NAME + ".apk";
         GenericBuild(SCENES, TARGET_DIR + "/" + targetPath, BuildTargetGroup.Standalone, BuildTarget.Android, BuildOptions.None);
-    }
-
-    [MenuItem("Custom/CI/Build Android Gradle")]
-    static void PerformAndroidGradleBuild()
-    {
-        string targetPath = APP_NAME;
-        GenericBuild(SCENES, TARGET_DIR + "/" + targetPath, BuildTargetGroup.Standalone, BuildTarget.Android, BuildOptions.AcceptExternalModificationsToPlayer);
     }
 
     private static string[] FindEnabledEditorScenes()
